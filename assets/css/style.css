@@ -19,4 +19,13 @@ html,body {
     padding: 3rem 0;
     line-height: 1.5;
   }
+
+.airline-card {
+  height: 100px;
+  background-color: lightgray;
+}
+.weather-card {
+  height: 100px;
+  background-color: lightgray;
+}
   
