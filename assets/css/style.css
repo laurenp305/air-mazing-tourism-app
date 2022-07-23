@@ -20,11 +20,28 @@ html,body {
     line-height: 1.5;
   }
 
+/*CARDS*/
+
+.column {
+  width: fit-content;
+  height: 300px;
+}
+
+.column h2 {
+  text-align: center;
+  font-weight: 600;
+  color: #3F8DD0;}
+
+
+/*AIRLINE CARD*/  
+
 #airline-card {
   justify-content: space-around;
   background-color: lightgray;
   margin: 5px;
 }
+
+/*WEATHER CARD*/
 
 #weather-card {
   justify-content: space-around;
@@ -32,10 +49,16 @@ html,body {
   margin: 5px;
 }
 
-.column h2 {
-  text-align: center;
-  font-weight: 500;
+.weather-content h3{
+  font-weight: 400;
   color: black;
 }
+
+.weather-content p {
+  font-weight: 400;
+  color: black;
+}
+
+
 
 
