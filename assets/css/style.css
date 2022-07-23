@@ -20,28 +20,26 @@ html,body {
     line-height: 1.5;
   }
 
-.cards {
+/* .cards {
   display: flex;
   justify-content: space-around;
-}
+} */
 
-.cards h2 {
+.cards h2 p {
   text-align: center;
   font-weight: 500;
   color: black;
 }
 
-.airline-card {
+/* .airline-card {
   height: 500px;
-  width: 500px;
+  width: 50%;
   background-color: lightgray;
-  flex-direction: column;
 }
 
 .weather-card {
   height: 500px;
-  width: 500px;
+  width: 50%;
   background-color: lightgray;
-  flex-direction: column;
-}
-  
+} */
+
