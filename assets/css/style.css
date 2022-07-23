@@ -27,6 +27,8 @@ html,body {
 
 .cards h2 {
   text-align: center;
+  font-weight: 500;
+  color: black;
 }
 
 .airline-card {
