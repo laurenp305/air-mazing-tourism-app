@@ -2,7 +2,8 @@
 ### URL :
 
 ## Description
-A simple web application that allows users to search for flights to and the weather of city and save the data in local storange.
+A simple web application that allows users to search for flights to and the weather of the city they're traveling to and save the data in local storange.
+
 
 ## User Story
 ```
