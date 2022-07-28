@@ -1,34 +1,82 @@
-//AIRLINE VARIABLES
-let statusEl = document.getElementById('flight_status');
-let dateEl = document.getElementById('flight_date');
-let airlineNameEl = document.getElementById('airline_name');
-let flightNumEL = document.getElementById('flight_number');
-let airlineCardEl = document.getElementById('airline-card');
+//WHEN user inputs city
+//THEN list of flights show up and weather details for that location
+const cityNameInput = document.querySelector("#city-name");
+const currentConditionsH3 = document.querySelector("#airline-card h3");
+const currentConditionsUl = document.querySelector("#airline-card #conditions");
+const searchForm = document.getElementById('search-button');
+const flightlist = document.querySelector("#flight-list");
 
-//Assigning API for airline 
+const getFlight = (city) => {
+  const apiUrlCoords =
+    "http://api.aviationstack.com/v1/flights?access_key=4613b548eb3115bdfa2d64057b8fe768";
 
-// const airlineApiKey = "f3cea198850c652641a128d60fee4060";
+  fetch(apiUrlCoords).then(function (response) {
+    if (!response.ok) {
+      currentConditionsH3.textContent = "Try again!";
+    } else {
+      response.json().then(function (data) {
+        var values = data;
 
-function getAirline(city) {
-    const airlineUrl = "https://api.aviationstack.com/v1/flights?q=" + city + "f3cea198850c652641a128d60fee4060";
-    fetch(airlineUrl) 
-        .then(function (response) {
-        return 
-        })
+        for (let i = 0; i < values.pagination.count; i++) {
+          const newRow = document.createElement("tr");
 
-    .then (function (response) {
-            return response.json()
- 
-    })
- 
-    .then (function (data) {
-  console.log(data)
-    })
+          // Creating new flightStatus;
+          const newFlightStatus = document.createElement("th");
+          newFlightStatus.innerHTML = data.data[i].flight_status;
+          if (data.data[i].flight_status === "scheduled") {
+            newFlightStatus.style.color = "blue";
+          } else if (data.data[i].flight_status === "cancelled") {
+            newFlightStatus.style.color = "red";
+          } else {
+            newFlightStatus.style.color = "green";
+          }
+          newRow.appendChild(newFlightStatus);
+          // Creating new flightDate;
+          const newFlightDate = document.createElement("th");
+          newFlightDate.innerHTML = data.data[i].flight_date;
+          newRow.appendChild(newFlightDate);
+          // Creating new departureAirport;
+          const newDepAirport = document.createElement("th");
+          newDepAirport.innerHTML = data.data[i].departure.airport;
+          newRow.appendChild(newDepAirport);
+          // Creating new arivalAirport;
+          const newArivalAirport = document.createElement("th");
+          newArivalAirport.innerHTML = data.data[i].arrival.airport;
+          newRow.appendChild(newArivalAirport);
+          // Creating new airlineName;
+          const newAirlineName = document.createElement("th");
+          newAirlineName.innerHTML = data.data[i].airline.name;
+          newRow.appendChild(newAirlineName);
+          // Creating new flightNumber;
+          const newFlightNumber = document.createElement("th");
+          newFlightNumber.innerHTML = data.data[i].flight.number;
+          newRow.appendChild(newFlightNumber);
+          // Creating new arivalTime;
+          const newArivalTime = document.createElement("th");
+          //newArivalTime.innerHTML = data.data[i].arrival.estimated;
+          newArivalTime.innerHTML = new Date(
+            data.data[i].arrival.estimated
+          ).toLocaleString();
+          newRow.appendChild(newArivalTime);
+          // Creating new departureTime;
+          const newDepartureTime = document.createElement("th");
+          newDepartureTime.innerHTML = new Date(
+            data.data[i].departure.estimated
+          ).toLocaleString();
+          newRow.appendChild(newDepartureTime);
+          // Displaying in UI;
+          flightlist.appendChild(newRow);
+        }
+      });
+    }
+  });
+};
 
-}
-
+searchForm.addEventListener("click", (event) => {
+  event.preventDefault();
+});
 // Assigning a unique API to a variable
-const weatherApi = "84b79da5e5d7c92085660485702f4ce8";
+const weatherApi = "c9171a22ca52ca8877ccb46ef06fe2f9";
 
 
 var citySearchEl = document.getElementById('search-query');
@@ -78,5 +126,3 @@ function convertion(val){
         .catch(err => alert('You entered an invalid city name. Try again!'))
     })
 
-// getAirline();
-// getWeather();
