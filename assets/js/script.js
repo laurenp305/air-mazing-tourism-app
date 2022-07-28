@@ -1,30 +1,25 @@
 //AIRLINE VARIABLES
+
+
+//Assigning API for airline 
+
+const airlineApiKey = "f3cea198850c652641a128d60fee4060";
+
 let statusEl = document.getElementById('flight_status');
 let dateEl = document.getElementById('flight_date');
 let airlineNameEl = document.getElementById('airline_name');
 let flightNumEL = document.getElementById('flight_number');
 let airlineCardEl = document.getElementById('airline-card');
 
-//Assigning API for airline 
+queryURL = "https://api.aviationstack.com/v1/flights?q=" + airlineNameEl.value + "&access_key=" + airlineApiKey;
 
-const airlineApiKey = "f3cea198850c652641a128d60fee4060";
+searchButtonEl.addEventListener('click', function(){
+    fetch("https://api.aviationstack.com/v1/flights?q=" + airlineNameEl.value + "&access_key=" + airlineApiKey)
+    
+    .then(res => res.json())
+    .then(data => {})
 
-function getAirline(city) {
-    const airlineUrl = "https://api.aviationstack.com/v1/flights?q=" + city + "f3cea198850c652641a128d60fee4060";
-    fetch(airlineUrl) 
-        .then(function (response) {
-        return 
-        })
-
-    .then (function (response) {
-            return response.json()
- 
-    })
- 
-    .then (function (data) {
-    })
-
-}
+})
 
 // Assigning a unique API to a variable
 const weatherApi = "84b79da5e5d7c92085660485702f4ce8";
