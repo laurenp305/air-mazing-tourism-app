@@ -7,7 +7,7 @@ let airlineCardEl = document.getElementById('airline-card');
 
 //Assigning API for airline 
 
-// const airlineApiKey = "f3cea198850c652641a128d60fee4060";
+const airlineApiKey = "f3cea198850c652641a128d60fee4060";
 
 function getAirline(city) {
     const airlineUrl = "https://api.aviationstack.com/v1/flights?q=" + city + "f3cea198850c652641a128d60fee4060";
@@ -22,7 +22,6 @@ function getAirline(city) {
     })
  
     .then (function (data) {
-  console.log(data)
     })
 
 }
@@ -78,5 +77,5 @@ function convertion(val){
         .catch(err => alert('You entered an invalid city name. Try again!'))
     })
 
-// getAirline();
-// getWeather();
+ //getAirline();
+ //getWeather();
