@@ -3,7 +3,7 @@
 const cityNameInput = document.querySelector("#city-name");
 const currentConditionsH3 = document.querySelector("#airline-card h3");
 const currentConditionsUl = document.querySelector("#airline-card #conditions");
-const searchForm = document.getElementById('search-button');
+const searchForm = document.querySelector(".button");
 const flightlist = document.querySelector("#flight-list");
 
 const getFlight = (city) => {
@@ -74,7 +74,18 @@ const getFlight = (city) => {
 
 searchForm.addEventListener("click", (event) => {
   event.preventDefault();
+
+  let searchValue = cityNameInput.value.trim("");
+
+  if (searchValue === "") {
+    currentConditionsH3.textContent = "Please enter a city!";
+  } else {
+    currentConditionsH3.textContent = "";
+    getFlight(searchValue);
+  }
 });
+
+//WEATHER
 // Assigning a unique API to a variable
 const weatherApi = "c9171a22ca52ca8877ccb46ef06fe2f9";
 
@@ -125,4 +136,3 @@ function convertion(val){
 //Now the condition must be added that what if you do not input anything in the input box.
         .catch(err => alert('You entered an invalid city name. Try again!'))
     })
-
