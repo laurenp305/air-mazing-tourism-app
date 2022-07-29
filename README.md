@@ -1,5 +1,5 @@
 # air-mazing-tourism-app
-### URL :
+### Live URL : https://laurenp305.github.io/air-mazing-tourism-app/
 
 ## Description
 A simple web application that allows users to search for flights to and the weather of the city they're traveling to and save the data in local storange.
@@ -33,6 +33,9 @@ Have a quality README (with unique name, description, technologies used, screens
 - With a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity.
 
 ## Mock-Up
+
+<img width="1787" alt="image" src="https://user-images.githubusercontent.com/106932259/181672193-877473b8-86cd-4f91-b820-a6bff66dc9e6.png">
+
 
 ## Technologies Use
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
