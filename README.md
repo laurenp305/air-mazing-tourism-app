@@ -38,13 +38,13 @@ Have a quality README (with unique name, description, technologies used, screens
 
 
 ## Technologies Used:
-# Bulma
-# Google Fonts
-# Javascript
-# HTML
-# CSS
-# Airline API
-# Weather API
+- Bulma
+- Google Fonts
+- Javascript
+- HTML
+- CSS
+- Airline API
+- Weather API
 
 ## Contributor:
 Lauren Amor, Michael Correa, Kamal Kishore, Kevin Cruz ¬©2022 All Rights Reserved.
