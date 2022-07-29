@@ -5,6 +5,11 @@ const currentConditionsH3 = document.querySelector("#airline-card h3");
 const currentConditionsUl = document.querySelector("#airline-card #conditions");
 const searchForm = document.querySelector(".button");
 const flightlist = document.querySelector("#flight-list");
+const cityNameEl = document.querySelector("#city-name");
+const currentWeatherIconEl = document.querySelector("#current-weather-icon");
+const tempEl = document.querySelector("#temp");
+const feelsLikeEl = document.querySelector("#feels-like");
+const windSpeedEl = document.querySelector("#wind-speed");
 
 const getFlight = (city) => {
   const apiUrlCoords =
@@ -82,57 +87,40 @@ searchForm.addEventListener("click", (event) => {
   } else {
     currentConditionsH3.textContent = "";
     getFlight(searchValue);
+    // call the getWeather function
+    getWeather(searchValue);
   }
 });
 
-//WEATHER
-// Assigning a unique API to a variable
-const weatherApi = "c9171a22ca52ca8877ccb46ef06fe2f9";
-
-
-var citySearchEl = document.getElementById('search-query');
-var searchButtonEl = document.getElementById('search-button');
-var cityNameEl = document.getElementById('city-name');
-var descriptionEl = document.getElementById('city-weather');
-var temperatureEL = document.getElementById('temp');
-var windSpeedEl = document.getElementById('wind-speed');
-var feelsLikeEl = document.getElementById('feels-like');
-var weatherIconEl = document.getElementById('weather-icon');
-
-queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + citySearchEl + "&appid=" + weatherApi;
-
-//kelvin to celcious. 1 Kelvin is equal to -272.15 Celsius.
-
-function convertion(val){
-    return (val - 273).toFixed(2)
-}
-
-    searchButtonEl.addEventListener('click', function(){
-
-        fetch('https://api.openweathermap.org/data/2.5/weather?q='+citySearchEl.value+'&appid='+weatherApi)
-        .then(res => res.json())
-
-         //.then(data => console.log(data))
-
-        .then(data => {
-
-//Now you need to collect the necessary information with the API link. Now I will collect that information and store it in different constants.
-
-            var nameval = data['name']
-            var descrip = data['weather']['0']['description']
-            var temperature = data['main']['temp']
-            var wndspd = data['wind']['speed']
-            var feelsLike = data['main']['feels_like']
-            var weatherPic = data['weather']['icon']
-//Now with the help of innerHTML you have to make arrangements to display all the information in the webpage.
-            cityNameEl.innerHTML=`Weather of <span>${nameval}<span>`
-            temperatureEL.innerHTML = `Temperature: <span>${convertion(temperature)} C</span>`
-            feelsLikeEl.innerHTML = `Feels Like: <span>${feelsLike}<span>`
-            descriptionEl.innerHTML = `Sky Conditions: <span>${descrip}<span>`
-            windSpeedEl.innerHTML = `Wind Speed: <span>${wndspd} km/h<span>`
-            weatherIconEl.innerHTML = {weatherPic}
-        })
-
-//Now the condition must be added that what if you do not input anything in the input box.
-        .catch(err => alert('You entered an invalid city name. Try again!'))
+function getWeather(searchValue) {
+  const weatherApi = "c9171a22ca52ca8877ccb46ef06fe2f9";
+  const queryURL =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    searchValue +
+    "&appid=" +
+    weatherApi +
+    "&units=imperial";
+  fetch(queryURL)
+    .then(function (response) {
+      return response.json();
     })
+    .then(function (data) {
+      console.log(data);
+      const temperature = data.main.temp;
+      console.log("temperature", temperature);
+      const feelsLike = data.main.feels_like;
+      console.log("feelsLike", feelsLike);
+      const windSpeed = data.wind.speed;
+      console.log("windspeed", windSpeed);
+      const weatherIcon = data.weather[0].icon;
+      console.log("weatherIcon", weatherIcon);
+      const weatherIconUrl = `http://openweathermap.org/img/wn/${weatherIcon}.png`;
+      console.log("weatherIconUrl", weatherIconUrl);
+
+      cityNameEl.textContent = searchValue;
+      currentWeatherIconEl.setAttribute("src", weatherIconUrl);
+      tempEl.innerHTML = `Temperature: <span>${temperature} C</span>`;
+      feelsLikeEl.innerHTML = `Feels Like: <span>${feelsLike}<span>`;
+      windSpeedEl.innerHTML = `Wind Speed: <span>${windSpeed} km/h<span>`;
+    });
+}
